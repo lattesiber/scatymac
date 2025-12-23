@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>scatyMAC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, Arial, sans-serif;
+}
+
+body{
+  min-height:200vh;
+  background: linear-gradient(270deg,#6a00ff,#9b00ff,#5a00cc);
+  background-size:600% 600%;
+  animation:bgAnim 12s ease infinite;
+  color:white;
+  overflow-x:hidden;
+}
+
+@keyframes bgAnim{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.box{
+  width:80%;
+  max-width:600px;
+  margin:120px auto;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 30px rgba(0,0,0,0.3);
+  cursor:grab;
+  transition:transform 0.2s;
+}
+
+.box:active{
+  cursor:grabbing;
+  transform:scale(1.03);
+}
+
+.box h1{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.box p{
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* ==== FOOTER ==== */
+.footer{
+  position:fixed;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  color:#fff;
+  padding:10px 16px;
+  border-radius:12px;
+  font-size:12px;
+  opacity:0.85;
+  box-shadow:0 0 10px rgba(0,0,0,0.6);
+}
+
+.footer a{
+  color:#b88cff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.footer a:hover{
+  color:#ffffff;
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<div class="box draggable">
+  <h1>Kendin Paylaş Sen Paylaş</h1>
+</div>
+
+<div class="box draggable">
+  <h1>Kendi domainizi oluşturun!</h1>
+  <p>
+    Açıklama:<br>
+    Bize e-postada yazarak kendi web sitenizi oluşturabilir  
+    ve kendi web sitenizi yayınlayabilirsiniz!
+  </p>
+</div>
+
+<div class="box draggable">
+  <h1>Kendi yaptığınız platformda bize katılın!</h1>
+  <p>
+    Açıklama:<br>
+    Tam da bize katılarak kurallı ve dürüst olan  
+    kendi platformunuz onaylanacaktır.
+  </p>
+</div>
+
+<div class="footer">
+  Teliflidir © Tüm Hakları Saklıdır —
+  <a href="https://lattesiber.notion.site/ScatyMAC-2d24c372db1c80178712f27a49782bb6"
+     target="_blank">
+     buraya tıklayarak nasıl yapıldığını görün
+  </a>
+  | e-posta: a8112146@gmail.com
+</div>
+
+<script>
+document.querySelectorAll(".draggable").forEach(box=>{
+  let drag=false, x=0, y=0;
+
+  box.addEventListener("mousedown",e=>{
+    drag=true;
+    x=e.clientX-box.offsetLeft;
+    y=e.clientY-box.offsetTop;
+    box.style.position="absolute";
+    box.style.zIndex=1000;
+  });
+
+  document.addEventListener("mouseup",()=>drag=false);
+
+  document.addEventListener("mousemove",e=>{
+    if(!drag) return;
+    box.style.left=e.clientX-x+"px";
+    box.style.top=e.clientY-y+"px";
+  });
+});
+</script>
+
+</body>
+</html>
